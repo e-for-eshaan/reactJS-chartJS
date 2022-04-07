@@ -1,1 +1,1 @@
-![Slot Demo](/src/Assets/slot.gif)
+![Slot Demo](/src/Assets/Images/slot.gif)
