@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './ControlPanel.scss'
 const ControlPanel = (props) => {
 
-    const [beforeAfter, setRange] = useState("Range")
-
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
@@ -31,15 +29,16 @@ const ControlPanel = (props) => {
 
 
     return (
-        <div>
+        <div className='controlWrapper'>
             <h3>
                 Control Panel
             </h3>
             <div className='controls'>
+                <input type="date" onChange={(e) => { setDate(e.target.value) }} />
 
                 <div class="dropdown">
                     <button onClick={() => myFunction()} class="dropbtn">
-                        {'Slot'}
+                        {'Slot ↓'}
                     </button>
                     <div id="myDropdown" class="dropdown-content">
                         <a onClick={() => { setslot(null) }}>All</a>
@@ -48,7 +47,6 @@ const ControlPanel = (props) => {
                     </div>
                 </div>
 
-                <input type="date" onChange={(e) => { setDate(e.target.value) }} />
             </div>
         </div>
     )

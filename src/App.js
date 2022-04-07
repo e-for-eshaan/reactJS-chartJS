@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
+import { extractDate } from "./Assets/Functions/Function";
 import ControlPanel from "./Components/ControlPanel/ControlPanel";
 import Fetching from "./Components/Fetching/Fetching";
 import BarChart from "./Components/Graphs/BarChart";
 import LineChart from "./Components/Graphs/LineChart";
 import PieChart from "./Components/Graphs/PieChart";
-import { UserData } from "../src/Components/Graphs/Data.js";
-import graphingData from "../src/Data/dummy.json";
 
 function App() {
   const [globalDate, setglobalDate] = useState(null);
@@ -27,11 +26,11 @@ function App() {
   }, [globalDate]);
 
   const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
+    labels: [0, 1, 2, 3, 4],
     datasets: [
       {
-        label: "globalPrimaryRefining",
-        data: UserData.map((data) => data.userGain),
+        label: "Secondary Refining",
+        data: [1, 2, 3, 4, 5],
         backgroundColor: [
           "rgba(75,192,192,1)",
           "#ecf0f1",
@@ -46,11 +45,11 @@ function App() {
   });
 
   const [timeDistribution, setTimeDistribution] = useState({
-    labels: UserData.map((data) => data.year),
+    labels: [1, 2, 3, 4, 5],
     datasets: [
       {
-        label: "globalPrimaryRefining",
-        data: UserData.map((data) => data.userGain),
+        label: "Time Distribution",
+        data: [0, 0, 0, 0, 0],
         backgroundColor: [
           "rgba(75,192,192,1)",
           "#ecf0f1",
@@ -65,11 +64,32 @@ function App() {
   });
 
   useEffect(() => {
+    setTimeDistribution({
+      labels: [1, 2, 3, 4, 5],
+      datasets: [
+        {
+          label: "Time Distribution",
+          data: [0, 0, 0, 0, 0],
+          backgroundColor: [
+            "rgba(75,192,192,1)",
+            "#ecf0f1",
+            "#50AF95",
+            "#f3ba2f",
+            "#2a71d0",
+          ],
+          borderColor: "black",
+          borderWidth: 2,
+        },
+      ],
+    });
+  }, [globalDate]);
+
+  useEffect(() => {
     // console.log(globalPrimaryRefining);
     if (globalPrimaryRefining)
       setUserData({
-        labels: globalPrimaryRefining.map(
-          (data) => data[0].schedule_time.split(" ")[0]
+        labels: globalPrimaryRefining.map((data) =>
+          extractDate(data[0].schedule_time)
         ),
         datasets: [
           {
@@ -118,21 +138,32 @@ function App() {
 
   return (
     <div className="App">
-      <div className="graphWrapper">
-        <BarChart chartData={userData} />
-        <br />
-        {/* <LineChart chartData={timeDistribution} /> */}
-        {/* <br /> */}
-        {/* <PieChart chartData={userData} /> */}
-        <br />
+      <div className="graphPanel">
+        <div className="graphWrapper">
+          <BarChart chartData={userData} />
+          <br />
+          <br />
+          <br />
+          {globalDate}
+          <LineChart chartData={timeDistribution} />
+          <br />
+          <br />
+          <br />
+
+          <div className="pieChart">
+            <PieChart chartData={userData} />
+          </div>
+        </div>
       </div>
-      <ControlPanel dateSetter={setglobalDate} slotSetter={setglobalSlot} />
-      <Fetching
-        dateInput={globalDate}
-        slotInput={globalSlot}
-        primarySetter={setglobalPrimaryRefining}
-        secondarySetter={setglobalSecondaryRefining}
-      />
+      <div className="dataPanel">
+        <ControlPanel dateSetter={setglobalDate} slotSetter={setglobalSlot} />
+        <Fetching
+          dateInput={globalDate}
+          slotInput={globalSlot}
+          primarySetter={setglobalPrimaryRefining}
+          secondarySetter={setglobalSecondaryRefining}
+        />
+      </div>
     </div>
   );
 }
