@@ -4,9 +4,8 @@ td {
 }
 
 .table-wrapper {
-  margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
@@ -14,7 +13,9 @@ td {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 1rem;
-  margin-right: 1rem;
+  margin: 1rem;
+  transition: 1s;
+  min-width: 850px;
 }
 
 .spacer {

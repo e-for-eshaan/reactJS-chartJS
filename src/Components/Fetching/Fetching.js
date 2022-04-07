@@ -14,6 +14,11 @@ const Fetching = (props) => {
 
     const [expandingDate, setexpandingDate] = useState(null)
 
+
+    useEffect(() => {
+        props.distributionSetter(expandingDate)
+    }, [expandingDate])
+
     useEffect(() => {
         console.log(expandingDate)
     }, [expandingDate])
@@ -183,7 +188,7 @@ const Fetching = (props) => {
                         </table>
                     </div>
 
-                    <div className="spacer"></div>
+                    {expandingDate && <div className="spacer"></div>}
 
                     {expandingDate &&
                         <div>

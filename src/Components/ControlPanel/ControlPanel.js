@@ -38,7 +38,7 @@ const ControlPanel = (props) => {
 
                 <div class="dropdown">
                     <button onClick={() => myFunction()} class="dropbtn">
-                        {'Slot ↓'}
+                        {(slot === null ? 'Slot' : (slot === 'L' ? 'Lunch' : 'Dinner')) + ' ↓'}
                     </button>
                     <div id="myDropdown" class="dropdown-content">
                         <a onClick={() => { setslot(null) }}>All</a>

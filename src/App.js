@@ -10,6 +10,7 @@ import PieChart from "./Components/Graphs/PieChart";
 function App() {
   const [globalDate, setglobalDate] = useState(null);
   const [globalSlot, setglobalSlot] = useState(null);
+  const [distributionDate, setdistributionDate] = useState(null);
   const [globalPrimaryRefining, setglobalPrimaryRefining] = useState(null);
   const [globalSecondaryRefining, setglobalSecondaryRefining] = useState(null);
   useEffect(() => {
@@ -143,10 +144,8 @@ function App() {
           <BarChart chartData={userData} />
           <br />
           <br />
-          <br />
-          {globalDate}
+          {distributionDate}
           <LineChart chartData={timeDistribution} />
-          <br />
           <br />
           <br />
 
@@ -162,6 +161,7 @@ function App() {
           slotInput={globalSlot}
           primarySetter={setglobalPrimaryRefining}
           secondarySetter={setglobalSecondaryRefining}
+          distributionSetter={setdistributionDate}
         />
       </div>
     </div>
