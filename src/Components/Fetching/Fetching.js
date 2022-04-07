@@ -2,61 +2,59 @@ import React, { useEffect, useState } from 'react'
 import './Fetching.scss'
 import dummydata from '../../Data/dummy.json'
 import { extractDate, extractTime } from '../../Assets/Functions/Function'
-const Fetching = (props) => {
+const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInput, slotInput, }) => {
     const show = true;
 
-    const [JSONdata, setJSONdata] = useState(dummydata);
+    const JSONdata = dummydata;
     const [modifiedData, setmodifiedData] = useState(null);
-    const [grouping1, setgrouping1] = useState(true);
-    const [grouping2, setgrouping2] = useState(true);
     const [primaryRefining, setprimaryRefining] = useState(null)
     const [secondaryRefining, setsecondaryRefining] = useState(null)
-
+    const grouping1 = true
+    const grouping2 = true
     const [expandingDate, setexpandingDate] = useState(null)
 
 
     useEffect(() => {
-        props.distributionSetter(expandingDate)
+        distributionSetter(expandingDate)
+    }, [expandingDate, distributionSetter])
+
+    useEffect(() => {
     }, [expandingDate])
 
-    useEffect(() => {
-        console.log(expandingDate)
-    }, [expandingDate])
-
 
     useEffect(() => {
-        console.log({ modifiedData: modifiedData })
-    }, [JSONdata, modifiedData, props.dateInput, props.slotInput]);
+    }, [JSONdata, modifiedData, dateInput, slotInput]);
 
 
-    const queryData = (date, slot) => {
-        var tempData = null;
-        if (!slot) {
-            tempData = JSONdata.filter(
-                item => {
-                    let date1 = new Date(item.item_date)
-                    let date2 = new Date(date)
-                    return +date1 == +date2;
-                }
-            )
+
+    useEffect(() => {
+
+        const queryData = (date, slot) => {
+            var tempData = null;
+            if (!slot) {
+                tempData = JSONdata.filter(
+                    item => {
+                        let date1 = new Date(item.item_date)
+                        let date2 = new Date(date)
+                        return +date1 === +date2;
+                    }
+                )
+            }
+            else {
+                tempData = JSONdata.filter(
+                    item => {
+                        let date1 = new Date(item.item_date)
+                        let date2 = new Date(date)
+                        return +date1 === +date2 && slot === item.slot;
+                    }
+                )
+            }
+
+            setmodifiedData(tempData);
         }
-        else {
-            tempData = JSONdata.filter(
-                item => {
-                    let date1 = new Date(item.item_date)
-                    let date2 = new Date(date)
-                    return +date1 == +date2 && slot == item.slot;
-                }
-            )
-        }
-
-        setmodifiedData(tempData);
-    }
-
-    useEffect(() => {
-        queryData(props.dateInput, props.slotInput);
+        queryData(dateInput, slotInput);
         setexpandingDate(null)
-    }, [props.dateInput, props.slotInput])
+    }, [dateInput, slotInput, JSONdata])
 
     useEffect(() => {
         var grouping1Data = [];
@@ -75,7 +73,6 @@ const Fetching = (props) => {
                 grouping1Data.push(temp1);
                 i = j;
             }
-            console.log({ grouping1: grouping1Data });
             setprimaryRefining(grouping1Data);
         }
 
@@ -99,12 +96,10 @@ const Fetching = (props) => {
             var i;
             for (i = 0; i < primaryRefining.length; i++) {
                 let date = extractDate(primaryRefining[i][0].schedule_time)
-                console.log({ date: date })
-                if (date == expandingDate)
+                if (date === expandingDate)
                     break;
             }
 
-            console.log({ refined: primaryRefining[i] })
 
             let newData = primaryRefining[i];
 
@@ -119,23 +114,17 @@ const Fetching = (props) => {
                 }
             }
 
-            // var j
-            // for (j = 0; j < primaryRefining[i].length; i++) {
-            //     console.log(primaryRefining[i][j])
-            // }
-
             setsecondaryRefining(grouping2Data);
-            console.log({ grouping2: grouping2Data });
         }
     }, [primaryRefining, expandingDate])
 
     useEffect(() => {
-        props.secondarySetter(secondaryRefining)
-    }, [secondaryRefining])
+        secondarySetter(secondaryRefining)
+    }, [secondaryRefining, secondarySetter])
 
     useEffect(() => {
-        props.primarySetter(primaryRefining)
-    }, [primaryRefining])
+        primarySetter(primaryRefining)
+    }, [primaryRefining, primarySetter])
 
     return (
         <div>
@@ -172,13 +161,12 @@ const Fetching = (props) => {
                                         >{extractDate(data[0].schedule_time)}</td>
                                         <td>
                                             {data.map((item, index) => {
-                                                return <table>
+                                                return <table key={index} >
                                                     <tr>
                                                         <td>{item.schedule_time}</td>
                                                         <td>{item.slot}</td>
                                                         <td>{item.item_date}</td>
                                                     </tr>
-                                                    <br />
                                                 </table>
                                             })}
                                         </td>
@@ -197,7 +185,7 @@ const Fetching = (props) => {
                             <table>
                                 {secondaryRefining && secondaryRefining.map((item, index) => {
                                     return (
-                                        <tr>
+                                        <tr table={index}>
                                             <td>
                                                 {item.time}
                                             </td>
@@ -205,7 +193,7 @@ const Fetching = (props) => {
                                                 {
                                                     item.objects.length > 0 && item.objects.map((none, j) => {
                                                         return (
-                                                            <table>
+                                                            <table key={j}>
                                                                 <tr>
                                                                     <td>{none.schedule_time}</td>
                                                                     <td>{none.slot}</td>

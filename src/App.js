@@ -13,18 +13,6 @@ function App() {
   const [distributionDate, setdistributionDate] = useState(null);
   const [globalPrimaryRefining, setglobalPrimaryRefining] = useState(null);
   const [globalSecondaryRefining, setglobalSecondaryRefining] = useState(null);
-  useEffect(() => {
-    // console.log(
-    //   {
-    //     globalDate: globalDate,
-    //     type: typeof globalDate,
-    //   },
-    //   {
-    //     globalSlot: globalSlot,
-    //     type: typeof globalSlot,
-    //   }
-    // );
-  }, [globalDate]);
 
   const [userData, setUserData] = useState({
     labels: [0, 1, 2, 3, 4],
@@ -86,7 +74,6 @@ function App() {
   }, [globalDate]);
 
   useEffect(() => {
-    // console.log(globalPrimaryRefining);
     if (globalPrimaryRefining)
       setUserData({
         labels: globalPrimaryRefining.map((data) =>
@@ -111,7 +98,6 @@ function App() {
   }, [globalPrimaryRefining]);
 
   useEffect(() => {
-    // console.log(globalSecondaryRefining);
     if (globalSecondaryRefining)
       setTimeDistribution({
         labels: globalSecondaryRefining.map((data) => data.time),
@@ -133,9 +119,7 @@ function App() {
       });
   }, [globalSecondaryRefining]);
 
-  useEffect(() => {
-    console.log(globalSecondaryRefining);
-  }, [globalSecondaryRefining]);
+  useEffect(() => {}, [globalSecondaryRefining]);
 
   return (
     <div className="App">
