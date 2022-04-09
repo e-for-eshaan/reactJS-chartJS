@@ -1,6 +1,5 @@
 td {
   width: unset;
-  border: 1px solid black;
 }
 
 .table-wrapper {
@@ -25,4 +24,13 @@ td {
 .datePicker:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.582);
+}
+
+table {
+  border: solid 2px black;
+}
+
+.mini_table {
+  width: calc(100% - 0.4rem);
+  margin: 0.2rem;
 }

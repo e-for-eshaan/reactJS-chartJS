@@ -133,7 +133,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                     <div>
                         <h2>Raw Query</h2>
                         <p>{"Raw Data Queried by date"}</p>
-                        <table>
+                        <table border='1' frame='void' rules='rows'>
                             {modifiedData && modifiedData.map((data, index) => {
                                 return (
                                     <tr key={index}>
@@ -151,7 +151,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                     <div>
                         <h2>Primary Refining</h2>
                         <p>{"First Refining (Choose A Date)"}</p>
-                        <table>
+                        <table border='1' frame='void' rules='rows'>
                             {primaryRefining && primaryRefining.map((data, index) => {
                                 return (
                                     <tr key={index}>
@@ -160,15 +160,18 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                                             onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' });; setexpandingDate(extractDate(data[0].schedule_time)) }}
                                         >{extractDate(data[0].schedule_time)}</td>
                                         <td>
-                                            {data.map((item, index) => {
-                                                return <table key={index} >
-                                                    <tr>
-                                                        <td>{item.schedule_time}</td>
-                                                        <td>{item.slot}</td>
-                                                        <td>{item.item_date}</td>
-                                                    </tr>
-                                                </table>
-                                            })}
+                                            <table className='mini_table'>
+                                                {
+                                                    data.map((item, index) => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{item.schedule_time}</td>
+                                                                <td>{item.slot}</td>
+                                                                <td>{item.item_date}</td>
+                                                            </tr>
+                                                        )
+                                                    })}
+                                            </table>
                                         </td>
                                     </tr>
                                 )
@@ -182,7 +185,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                         <div>
                             <h2>Time Distribution</h2>
                             <p>For {expandingDate}</p>
-                            <table>
+                            <table border='1' frame='void' rules='rows'>
                                 {secondaryRefining && secondaryRefining.map((item, index) => {
                                     return (
                                         <tr table={index}>
@@ -190,19 +193,19 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                                                 {item.time}
                                             </td>
                                             <td>
-                                                {
-                                                    item.objects.length > 0 && item.objects.map((none, j) => {
-                                                        return (
-                                                            <table key={j}>
-                                                                <tr>
+                                                {item.objects.length > 0 && <table className='mini_table'>
+                                                    {
+                                                        item.objects.length > 0 && item.objects.map((none, j) => {
+                                                            return (
+                                                                <tr key={j}>
                                                                     <td>{none.schedule_time}</td>
                                                                     <td>{none.slot}</td>
                                                                     <td>{none.item_date}</td>
                                                                 </tr>
-                                                            </table>
-                                                        )
-                                                    })
-                                                }
+                                                            )
+                                                        })
+                                                    }
+                                                </table>}
                                             </td>
                                         </tr>
                                     )
