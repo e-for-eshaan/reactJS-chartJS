@@ -31,15 +31,13 @@ table {
   border: 1px solid;
   td {
     border-bottom: 1px solid;
-  }
-  border-bottom: none !important;
-  td {
     border-right: 1px solid;
+    padding: 0.3rem;
   }
+  border-bottom: none;
   border-right: none;
 }
 
 .mini_table {
-  width: calc(100% - 0.4rem);
-  margin: 0.2rem;
+  width: 100%;
 }
