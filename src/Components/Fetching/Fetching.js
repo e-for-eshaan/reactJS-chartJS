@@ -133,7 +133,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                     <div>
                         <h2>Raw Query</h2>
                         <p>{"Raw Data Queried by date"}</p>
-                        <table border='1' frame='void' rules='rows'>
+                        <table cellSpacing={0}>
                             {modifiedData && modifiedData.map((data, index) => {
                                 return (
                                     <tr key={index}>
@@ -151,7 +151,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                     <div>
                         <h2>Primary Refining</h2>
                         <p>{"First Refining (Choose A Date)"}</p>
-                        <table border='1' frame='void' rules='rows'>
+                        <table cellSpacing={0}>
                             {primaryRefining && primaryRefining.map((data, index) => {
                                 return (
                                     <tr key={index}>
@@ -160,7 +160,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                                             onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' });; setexpandingDate(extractDate(data[0].schedule_time)) }}
                                         >{extractDate(data[0].schedule_time)}</td>
                                         <td>
-                                            <table className='mini_table'>
+                                            <table cellSpacing={0} className='mini_table'>
                                                 {
                                                     data.map((item, index) => {
                                                         return (
@@ -185,15 +185,15 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                         <div>
                             <h2>Time Distribution</h2>
                             <p>For {expandingDate}</p>
-                            <table border='1' frame='void' rules='rows'>
+                            <table cellSpacing={0}>
                                 {secondaryRefining && secondaryRefining.map((item, index) => {
                                     return (
-                                        <tr table={index}>
+                                        <tr key={index}>
                                             <td>
                                                 {item.time}
                                             </td>
                                             <td>
-                                                {item.objects.length > 0 && <table className='mini_table'>
+                                                {item.objects.length > 0 && <table cellSpacing={0} className='mini_table'>
                                                     {
                                                         item.objects.length > 0 && item.objects.map((none, j) => {
                                                             return (
