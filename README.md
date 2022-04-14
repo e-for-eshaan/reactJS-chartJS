@@ -1,5 +1,5 @@
-# Assignment
-This is my submission for the assignment given by your team. The web app is a simple tool that queries from 4000+ element dataset, and uses Chart.JS library to display the graphical output for queries.
+# ChartJS
+ChartJS is a free library that helps in data visualization in web apps. It provides a number of graph types and animations to go along. This web app is a simple tool that queries from 4000+ element dataset, and uses ChartJS library to display the graphical output for queries.
 
 ## Added Slot filtering along with date
 ![Slot Demo](src/Assets/Images/slotDemo.gif)
