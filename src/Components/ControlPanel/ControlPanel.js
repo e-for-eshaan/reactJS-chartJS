@@ -6,7 +6,7 @@ const ControlPanel = (props) => {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    const [date, setDate] = useState('2021-05-29');
+    const [date, setDate] = useState('2021-06-29');
     const [slot, setslot] = useState(null)
 
     useEffect(() => {
