@@ -17,7 +17,7 @@ const ControlPanel = (props) => {
     useEffect(() => {
         let dateInputField = document.querySelector('input');
         if (dateInputField)
-            dateInputField.value = '2021-05-28';
+            dateInputField.value = '2021-06-28';
     }, [])
 
 
