@@ -130,7 +130,11 @@ function App() {
         </div>
         <div className="graphWrapper">
           {distributionDate}
-          <LineChart chartData={timeDistribution} />
+          <LineChart
+            chartData={timeDistribution}
+            options={{ maintainAspectRatio: false }}
+            height="300px"
+          />
         </div>
         <div className="graphWrapper">
           <PieChart chartData={userData} />

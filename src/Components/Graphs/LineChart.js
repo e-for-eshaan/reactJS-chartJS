@@ -4,6 +4,8 @@ import { Chart as ChartJS } from "chart.js/auto";
 
 function LineChart({ chartData }) {
   return <Line data={chartData}
+    height={"100%"}
+    options={{ maintainAspectRatio: false }}
   />;
 }
 
