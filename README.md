@@ -1,4 +1,5 @@
 # ChartJS
+Deployed at https://bright-muffin-f2adc3.netlify.app/
 ChartJS is a free library that helps in data visualization in web apps. It provides a number of graph types and animations to go along. This web app is a simple tool that queries from 4000+ element dataset, and uses ChartJS library to display the graphical output for queries.
 
 ## Added Slot filtering along with date
