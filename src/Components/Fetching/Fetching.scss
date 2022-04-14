@@ -1,9 +1,12 @@
+@import "../../Assets/Styles/Variables.scss";
+
 td {
   width: unset;
 }
 
 .table-wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -14,16 +17,31 @@ td {
   padding: 1rem;
   margin: 1rem;
   transition: 1s;
-  min-width: 850px;
 }
 
 .spacer {
   width: 1rem;
 }
 
-.datePicker:hover {
+.spacer2 {
+  display: none;
+}
+
+.datePicker {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.582);
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.582);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+  }
 }
 
 table {
@@ -40,4 +58,25 @@ table {
 
 .mini_table {
   width: 100%;
+}
+
+@media #{$media-tablet} {
+  .spacer {
+    display: none !important;
+  }
+}
+
+@media #{$media-mobile} {
+  .table-wrapper {
+    font-size: 0.7rem;
+    min-width: unset;
+    width: calc(100% - 4rem);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .spacer {
+    display: none;
+  }
 }

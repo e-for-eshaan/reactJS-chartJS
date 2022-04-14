@@ -6,7 +6,7 @@ const ControlPanel = (props) => {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState('2021-05-29');
     const [slot, setslot] = useState(null)
 
     useEffect(() => {
@@ -14,12 +14,19 @@ const ControlPanel = (props) => {
         props.slotSetter(slot)
     }, [date, slot])
 
+    useEffect(() => {
+        let dateInputField = document.querySelector('input');
+        if (dateInputField)
+            dateInputField.value = '2021-05-28';
+    }, [])
+
+
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
+            let dropdowns = document.getElementsByClassName("dropdown-content");
+            let i;
             for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
+                let openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
                 }

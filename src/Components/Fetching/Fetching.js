@@ -26,7 +26,6 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
     }, [JSONdata, modifiedData, dateInput, slotInput]);
 
 
-
     useEffect(() => {
 
         const queryData = (date, slot) => {
@@ -77,6 +76,12 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
         }
 
     }, [grouping1, grouping2, modifiedData])
+
+    useEffect(() => {
+        if (primaryRefining && primaryRefining.length)
+            setexpandingDate(extractDate(primaryRefining[primaryRefining.length - 1][0].schedule_time))
+    }, [primaryRefining])
+
 
     useEffect(() => {
         var grouping2Data = [
@@ -179,7 +184,7 @@ const Fetching = ({ primarySetter, secondarySetter, distributionSetter, dateInpu
                         </table>
                     </div>
 
-                    {expandingDate && <div className="spacer"></div>}
+                    {expandingDate && <div className="spacer spacer2"></div>}
 
                     {expandingDate &&
                         <div>

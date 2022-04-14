@@ -1,21 +1,24 @@
+@import "./Assets/Styles/Variables.scss";
+
 .App {
   margin: 2rem;
   text-align: center;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   background: rgba(255, 255, 255, 0.47);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
   .graphPanel {
+    width: calc(100% - 4rem);
     display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-left: 1rem;
-    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    padding: 1rem;
+    margin: 1rem 1rem 0 1rem;
     background: rgba(255, 255, 255, 0.47);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
@@ -23,12 +26,10 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     .graphWrapper {
-      max-width: 400px;
-      margin: auto;
+      width: 32%;
+      min-width: 250px;
+      display: inline-block;
     }
-  }
-  .pieChart {
-    margin: 3rem;
   }
   .dataPanel {
     font-size: 0.8rem;
@@ -36,5 +37,11 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
+  }
+}
+
+@media #{$media-tablet} {
+  .App {
+    flex-direction: column;
   }
 }

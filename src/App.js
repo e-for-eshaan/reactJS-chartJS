@@ -119,35 +119,30 @@ function App() {
       });
   }, [globalSecondaryRefining]);
 
-  useEffect(() => {}, [globalSecondaryRefining]);
+  useEffect(() => { }, [globalSecondaryRefining]);
 
   return (
     <div className="App">
+      <ControlPanel dateSetter={setglobalDate} slotSetter={setglobalSlot} />
       <div className="graphPanel">
         <div className="graphWrapper">
           <BarChart chartData={userData} />
-          <br />
-          <br />
+        </div>
+        <div className="graphWrapper">
           {distributionDate}
           <LineChart chartData={timeDistribution} />
-          <br />
-          <br />
-
-          <div className="pieChart">
-            <PieChart chartData={userData} />
-          </div>
+        </div>
+        <div className="graphWrapper">
+          <PieChart chartData={userData} />
         </div>
       </div>
-      <div className="dataPanel">
-        <ControlPanel dateSetter={setglobalDate} slotSetter={setglobalSlot} />
-        <Fetching
-          dateInput={globalDate}
-          slotInput={globalSlot}
-          primarySetter={setglobalPrimaryRefining}
-          secondarySetter={setglobalSecondaryRefining}
-          distributionSetter={setdistributionDate}
-        />
-      </div>
+      <Fetching
+        dateInput={globalDate}
+        slotInput={globalSlot}
+        primarySetter={setglobalPrimaryRefining}
+        secondarySetter={setglobalSecondaryRefining}
+        distributionSetter={setdistributionDate}
+      />
     </div>
   );
 }
